@@ -5,7 +5,7 @@ userRoute = Router();
 
 // use named functions instead of lamda functions
 userRoute.get("/getAllUser", USERCONTROLLER.getAllUsersController)
-
-
+userRoute.post("/registerUser", USERCONTROLLER.registerUserController)
+userRoute.put("/editTwoUsers", USERCONTROLLER.editTwoUserNames)
 
 module.exports = userRoute

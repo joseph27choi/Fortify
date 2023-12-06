@@ -10,7 +10,7 @@ mongoConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api", INDEXROUTE)
+app.use("/practice", INDEXROUTE)
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello, there" });
