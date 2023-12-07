@@ -1,5 +1,6 @@
 // connect repository to database by using schema constructor
 const { User } = require("../../dtos")
+const { logger } = require("../../config/winston");
 
 const getAllUsers = async () => {
     try {
@@ -12,7 +13,7 @@ const getAllUsers = async () => {
         return allUsers;
     }
     catch (e) {
-        logger.error(e)
+        logger.error(`error in getAllUsers ${e}`)
         return `error in getAllUsers() ${e}`
     }
 }
@@ -24,7 +25,7 @@ const getOneUser = async (payload) => {
             logger.error("syntax error getOneUser()")
             return ("syntax error getOneUser()")
         }
-        const oneUser = await User.find({email});
+        const oneUser = await User.findOne({email});
         if (!oneUser) {
             logger.error(`failed, check getOneUser(), user does not exist`)
             return (`failed, check getOneUser(), user does not exist`)
@@ -34,8 +35,8 @@ const getOneUser = async (payload) => {
         return oneUser;
     }
     catch (e) {
-        logger.error(e)
-        return `error in getAllUsers() ${e}`
+        logger.error(`error in getOneUser() ${e}`)
+        return `error in getOneUser() ${e}`
     }
 }
 
@@ -61,7 +62,7 @@ const registerUser = async (payload) => {
         return "success"
     }
     catch (e) {
-        logger.error(e)
+        logger.error(`error in registerUser() ${e}`)
         return ("registerUser() has error ", e)
     }
 }
@@ -116,6 +117,7 @@ const editUserEmail = async (payload) => {
         // check syntax
         if (!email || !replacementEmail) {
             logger.error(`check editUserEmail() email: ${email} or replacement: ${replacementEmail}`)
+            console.log("HERE")
             return "failed, check editUserEmail(), incorrect syntax"
         }
 
@@ -124,16 +126,16 @@ const editUserEmail = async (payload) => {
         logger.error(existingUser);
         if (!existingUser) {
             logger.error('failed, check editUserEmail(), user does not exist')
+            console.log("HEEE")
             return 'failed, editUserEmail(), user not found'
         }
 
         // time to edit 
         await User.updateOne({ email: email }, { $set: { email: replacementEmail } })
-
         return 'success'
     }
     catch (e) {
-        logger.error(`failed, check editUserEmail() error: ${e}`)
+        logger.error(`failed, check editUserEmail() ${e}`)
         return `check editUserEmail() ${e}`;
     }
 }
@@ -160,7 +162,8 @@ const deleteUser = async (payload) => {
         return "success"
     }
     catch(e) {
-        logger.error(e)
+        logger.error(`error in deleteUser() ${e}`)
+
         return `error in deleteUser() ${e}`
     }
 }

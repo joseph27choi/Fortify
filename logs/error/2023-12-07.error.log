@@ -1,0 +1,43 @@
+2023-12-07 17:14:00 error: null
+2023-12-07 17:14:00 error: failed, check editUserEmail(), user does not exist
+2023-12-07 17:14:17 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:15:43 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:16:15 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:17:56 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'hairychoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:20:38 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'hairychoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:23:43 error: failed, check getOneUser(), user does not exist

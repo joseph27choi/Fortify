@@ -1,1 +1,132 @@
 2023-12-07 15:48:49 info: Server is running on port 8080.
+2023-12-07 16:05:44 info: Server is running on port 8080.
+2023-12-07 16:07:25 info: Server is running on port 8080.
+2023-12-07 16:08:03 info: Server is running on port 8080.
+2023-12-07 16:08:11 info: Server is running on port 8080.
+2023-12-07 16:09:07 info: Server is running on port 8080.
+2023-12-07 16:09:09 info: Server is running on port 8080.
+2023-12-07 16:11:12 info: Server is running on port 8080.
+2023-12-07 16:58:45 info: Server is running on port 8080.
+2023-12-07 16:58:47 info: Server is running on port 8080.
+2023-12-07 16:58:59 info: Server is running on port 8080.
+2023-12-07 17:01:34 info: Server is running on port 8080.
+2023-12-07 17:01:37 info: Server is running on port 8080.
+2023-12-07 17:01:43 info: Server is running on port 8080.
+2023-12-07 17:01:49 info: Server is running on port 8080.
+2023-12-07 17:01:51 info: Server is running on port 8080.
+2023-12-07 17:01:54 info: Server is running on port 8080.
+2023-12-07 17:01:57 info: Server is running on port 8080.
+2023-12-07 17:02:01 info: Server is running on port 8080.
+2023-12-07 17:02:06 info: Server is running on port 8080.
+2023-12-07 17:02:15 info: Server is running on port 8080.
+2023-12-07 17:02:22 info: Server is running on port 8080.
+2023-12-07 17:02:28 info: Server is running on port 8080.
+2023-12-07 17:02:39 info: Server is running on port 8080.
+2023-12-07 17:02:44 info: Server is running on port 8080.
+2023-12-07 17:02:46 info: Server is running on port 8080.
+2023-12-07 17:03:04 info: Server is running on port 8080.
+2023-12-07 17:03:10 info: Server is running on port 8080.
+2023-12-07 17:03:14 info: Server is running on port 8080.
+2023-12-07 17:03:17 info: Server is running on port 8080.
+2023-12-07 17:03:25 info: Server is running on port 8080.
+2023-12-07 17:03:27 info: Server is running on port 8080.
+2023-12-07 17:04:20 info: Server is running on port 8080.
+2023-12-07 17:04:25 info: Server is running on port 8080.
+2023-12-07 17:04:27 info: Server is running on port 8080.
+2023-12-07 17:04:41 info: Server is running on port 8080.
+2023-12-07 17:04:43 info: Server is running on port 8080.
+2023-12-07 17:04:45 info: Server is running on port 8080.
+2023-12-07 17:05:08 info: Server is running on port 8080.
+2023-12-07 17:05:16 info: Server is running on port 8080.
+2023-12-07 17:05:18 info: Server is running on port 8080.
+2023-12-07 17:05:27 info: Server is running on port 8080.
+2023-12-07 17:05:28 info: Server is running on port 8080.
+2023-12-07 17:05:33 info: Server is running on port 8080.
+2023-12-07 17:05:35 info: Server is running on port 8080.
+2023-12-07 17:05:37 info: Server is running on port 8080.
+2023-12-07 17:05:40 info: Server is running on port 8080.
+2023-12-07 17:06:38 info: Server is running on port 8080.
+2023-12-07 17:06:40 info: Server is running on port 8080.
+2023-12-07 17:06:45 info: Server is running on port 8080.
+2023-12-07 17:06:46 info: Server is running on port 8080.
+2023-12-07 17:06:49 info: Server is running on port 8080.
+2023-12-07 17:07:09 info: Server is running on port 8080.
+2023-12-07 17:07:12 info: Server is running on port 8080.
+2023-12-07 17:07:25 info: Server is running on port 8080.
+2023-12-07 17:07:28 info: Server is running on port 8080.
+2023-12-07 17:07:30 info: Server is running on port 8080.
+2023-12-07 17:07:46 info: Server is running on port 8080.
+2023-12-07 17:08:18 info: Server is running on port 8080.
+2023-12-07 17:08:45 info: Server is running on port 8080.
+2023-12-07 17:09:16 info: Server is running on port 8080.
+2023-12-07 17:09:28 info: Server is running on port 8080.
+2023-12-07 17:09:50 info: Server is running on port 8080.
+2023-12-07 17:09:54 info: Server is running on port 8080.
+2023-12-07 17:09:55 info: Server is running on port 8080.
+2023-12-07 17:09:58 info: Server is running on port 8080.
+2023-12-07 17:10:01 info: Server is running on port 8080.
+2023-12-07 17:11:59 info: Server is running on port 8080.
+2023-12-07 17:13:52 info: Server is running on port 8080.
+2023-12-07 17:14:00 error: null
+2023-12-07 17:14:00 error: failed, check editUserEmail(), user does not exist
+2023-12-07 17:14:17 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:15:43 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:16:15 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'jokerchoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:17:26 info: Server is running on port 8080.
+2023-12-07 17:17:32 info: Server is running on port 8080.
+2023-12-07 17:17:40 info: Server is running on port 8080.
+2023-12-07 17:17:56 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'hairychoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:19:15 info: Server is running on port 8080.
+2023-12-07 17:19:26 info: Server is running on port 8080.
+2023-12-07 17:19:27 info: Server is running on port 8080.
+2023-12-07 17:19:34 info: Server is running on port 8080.
+2023-12-07 17:19:49 info: Server is running on port 8080.
+2023-12-07 17:19:51 info: Server is running on port 8080.
+2023-12-07 17:19:54 info: Server is running on port 8080.
+2023-12-07 17:19:58 info: Server is running on port 8080.
+2023-12-07 17:20:04 info: Server is running on port 8080.
+2023-12-07 17:20:09 info: Server is running on port 8080.
+2023-12-07 17:20:10 info: Server is running on port 8080.
+2023-12-07 17:20:26 info: Server is running on port 8080.
+2023-12-07 17:20:29 info: Server is running on port 8080.
+2023-12-07 17:20:38 error: {
+  _id: new ObjectId('656e9dddb23a08b833253a02'),
+  email: 'hairychoi@gmail.com',
+  name: 'joker',
+  age: 13,
+  password: 'balls',
+  __v: 0
+}
+2023-12-07 17:21:10 info: Server is running on port 8080.
+2023-12-07 17:22:06 info: Server is running on port 8080.
+2023-12-07 17:22:14 info: Server is running on port 8080.
+2023-12-07 17:23:36 info: Server is running on port 8080.
+2023-12-07 17:23:43 error: failed, check getOneUser(), user does not exist
