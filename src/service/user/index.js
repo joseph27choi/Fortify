@@ -6,6 +6,11 @@ const getAllUsers  = async () => {
     return users;
 }
 
+const getOneUser = async (payload) => {
+    const repoMsg = await USERREPO.getOneUser(payload);
+    return repoMsg;
+}
+
 // only job is to connect
 const registerUser = async (payload) => {
     const repoMsg = await USERREPO.registerUser(payload);
@@ -27,4 +32,4 @@ const deleteUser = async(payload) => {
     return repoMsg;
 }
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser }
+module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser }

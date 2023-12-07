@@ -5,6 +5,11 @@ const getAllUsersController = async (req, res) => {
     res.json({ msg: allUserData })
 }
 
+const getOneUserController = async (req, res) => {
+    const msg = await USERSERVICE.getOneUser(req.body)
+    res.json({ msg })
+}
+
 // controller communicates with front end
 const registerUserController = async (req, res) => {
     const msg = await USERSERVICE.registerUser(req.body);
@@ -27,4 +32,4 @@ const deleteUserController = async(req, res) => {
     res.send({msg})
 }
 
-module.exports = { getAllUsersController, registerUserController, editTwoUserNamesController, editUserEmailController, deleteUserController } 
+module.exports = { getAllUsersController, registerUserController, editTwoUserNamesController, editUserEmailController, deleteUserController, getOneUserController } 

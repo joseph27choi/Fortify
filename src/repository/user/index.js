@@ -2,9 +2,41 @@
 const { User } = require("../../dtos")
 
 const getAllUsers = async () => {
-    const allUsers = await User.find({});
-    // what does the {} do? probably node syntax
-    return allUsers;
+    try {
+        const allUsers = await User.find({});
+        if (!allUsers) {
+            console.log(`failed, check getAllUsers(), cannot reach`)
+            return "cannot reach"
+        }
+        // what does the {} do? probably node syntax
+        return allUsers;
+    }
+    catch (e) {
+        console.log(e)
+        return `error in getAllUsers() ${e}`
+    }
+}
+
+const getOneUser = async (payload) => {
+    const {email} = payload;
+    try {
+        if (!email) {
+            console.log("syntax error getOneUser()")
+            return ("syntax error getOneUser()")
+        }
+        const oneUser = await User.find({email});
+        if (!oneUser) {
+            console.log(`failed, check getOneUser(), user does not exist`)
+            return (`failed, check getOneUser(), user does not exist`)
+        }
+
+        // what does the {} do? probably node syntax
+        return oneUser;
+    }
+    catch (e) {
+        console.log(e)
+        return `error in getAllUsers() ${e}`
+    }
 }
 
 const registerUser = async (payload) => {
@@ -136,4 +168,4 @@ const deleteUser = async (payload) => {
 }
 
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser }
+module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser }
