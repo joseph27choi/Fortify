@@ -1,22 +1,21 @@
 const express = require("express");
-const mongoConnect = require("./src/config/mongo");
-const INDEXROUTE = require("./src/router/index");
+const DBConnect = require("./src/config/mongo");
+const indexRouter = require("./src/router/index");
+const { logger } = require("./src/config/winston");
 
 const app = express();
-
-// connects with the DB
-mongoConnect();
+DBConnect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/practice", INDEXROUTE)
+app.use("/practice", indexRouter);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello, there" });
+  res.json({ message: "Welcome to first node server." });
 });
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  logger.info(`Server is running on port ${PORT}.`);
 });

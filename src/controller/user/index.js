@@ -22,14 +22,14 @@ const editTwoUserNamesController = async (req, res) => {
     res.send({ msg });
 }
 
-const editUserEmailController = async( req, res ) => {
+const editUserEmailController = async (req, res) => {
     const msg = await USERSERVICE.editUserEmail(req.body)
-    res.send({msg})
+    res.send({ msg })
 }
 
-const deleteUserController = async(req, res) => {
+const deleteUserController = async (req, res) => {
     const msg = await USERSERVICE.deleteUser(req.body)
-    res.send({msg})
+    res.send({ msg })
 }
 
 module.exports = { getAllUsersController, registerUserController, editTwoUserNamesController, editUserEmailController, deleteUserController, getOneUserController } 
