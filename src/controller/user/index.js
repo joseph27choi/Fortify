@@ -12,9 +12,19 @@ const registerUserController = async (req, res) => {
 }
 
 // put API
-const editTwoUserNames = async (req, res) => {
+const editTwoUserNamesController = async (req, res) => {
     const msg = await USERSERVICE.editTwoUserNames(req.body)
     res.send({ msg });
 }
 
-module.exports = { getAllUsersController, registerUserController, editTwoUserNames } 
+const editUserEmailController = async( req, res ) => {
+    const msg = await USERSERVICE.editUserEmail(req.body)
+    res.send({msg})
+}
+
+const deleteUserController = async(req, res) => {
+    const msg = await USERSERVICE.deleteUser(req.body)
+    res.send({msg})
+}
+
+module.exports = { getAllUsersController, registerUserController, editTwoUserNamesController, editUserEmailController, deleteUserController } 

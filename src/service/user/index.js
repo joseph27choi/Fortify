@@ -17,4 +17,14 @@ const editTwoUserNames = async (payload) => {
     return repoMsg
 }
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames }
+const editUserEmail = async (payload) => {
+    const msg = await USERREPO.editUserEmail(payload);
+    return msg;
+}
+
+const deleteUser = async(payload) => {
+    const repoMsg = await USERREPO.deleteUser(payload);
+    return repoMsg;
+}
+
+module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser }

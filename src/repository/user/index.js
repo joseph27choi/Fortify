@@ -15,7 +15,7 @@ const registerUser = async (payload) => {
             return "failed, check registerUser()"
         }
         // check if duplicates exist
-        const existingUser = await User.findOne({email})
+        const existingUser = await User.findOne({ email })
         if (existingUser) {
             console.log(`registerUser() ${email} already exists`)
             return "failed, already existing user, check registerUser()"
@@ -56,20 +56,18 @@ const editTwoUserNames = async (payload) => {
             console.log(`login(): ${email1} is not found.`);
             return "failed, user1 does not exist";
         }
-        // package
-        console.log(foundUser1)
 
         const foundUser2 = await User.findOne({ "email": email2 })
         if (!foundUser2) {
             console.log(`login(): ${email2} is not found.`);
             return "failed, user2 does not exist";
         }
-
-        console.log(foundUser2)
-
         // by this point, user entered valid payload with two existing users
         /* I want to replace foundUser1 with nameToChange1*/
         /* I want to replace foundUser2 with nameToChange2*/
+
+        await User.updateOne({ email: foundUser1.email }, { $set: { name: replacementName1 } });
+        await User.updateOne({ email: foundUser2.email }, { $set: { name: replacementName2 } });
 
         return "success";
     }
@@ -80,4 +78,62 @@ const editTwoUserNames = async (payload) => {
 
 }
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames }
+const editUserEmail = async (payload) => {
+    const { email, replacementEmail } = payload;
+    console.log(replacementEmail)
+    try {
+        // check syntax
+        if (!email || !replacementEmail) {
+            console.log(`check editUserEmail() email: ${email} or replacement: ${replacementEmail}`)
+            return "failed, check editUserEmail(), incorrect syntax"
+        }
+
+        // check if user exists
+        const existingUser = await User.findOne({ email })
+        console.log(existingUser);
+        if (!existingUser) {
+            console.log('failed, check editUserEmail(), user does not exist')
+            return 'failed, editUserEmail(), user not found'
+        }
+
+        // time to edit 
+        await User.updateOne({ email: email }, { $set: { email: replacementEmail } })
+
+        return 'success'
+    }
+    catch (e) {
+        console.log(`failed, check editUserEmail() error: ${e}`)
+        return `check editUserEmail() ${e}`;
+    }
+}
+
+const deleteUser = async (payload) => {
+    const { email } = payload;
+    try {
+        // see syntax
+        if (!email) {
+            console.log('failed, check deleteUser(), no email entered')
+            return ('failed, check deleteUser(), no email entered')
+        }
+
+        // see if user exists
+        const existingUser = User.findOne({email})
+        if (!existingUser) {
+            console.log('failed, check deleteUser(), no user found')
+            return ('failed, check deleteUser(), no user found')
+        }
+
+        // now make database changes
+        await User.deleteOne({ email: email})
+
+        return "success"
+    }
+    catch(e) {
+        console.log(e)
+        return `error in deleteUser() ${e}`
+    }
+    return "reached repo";
+}
+
+
+module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser }
