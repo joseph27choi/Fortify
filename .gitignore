@@ -6,5 +6,5 @@ web-nodejs/.env
 web-nodejs/logs
 
 web-nodejs/node_modules
-
+web-reactjs/node_modules
 .DS_Store
