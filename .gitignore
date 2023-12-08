@@ -1,8 +1,10 @@
-.env
+web-nodejs/.env
 .history/*
 
 .git
 
-node_modules
+web-nodejs/logs
 
+web-nodejs/node_modules
 
+.DS_Store
