@@ -114,6 +114,16 @@
           }
         }
       }
+    },
+    "/practice/user/loginUser": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

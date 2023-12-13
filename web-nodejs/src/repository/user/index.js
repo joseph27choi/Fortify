@@ -1,31 +1,34 @@
 // connect repository to database by using schema constructor
 const { User } = require("../../dtos")
 const { logger } = require("../../config/winston");
+const { CustomException, getStatusCode } = require("../../config/exceptions");
+const bcrypt = require("bcrypt")
 
 const getAllUsers = async () => {
     try {
         const allUsers = await User.find({});
         if (!allUsers) {
             logger.error(`failed, check getAllUsers(), cannot reach`)
-            return "cannot reach"
+            // throw new CustomException(getStatusCode.NOT_FOUND);
+            return CustomException(getStatusCode.NOT_FOUND);
         }
         // what does the {} do? probably node syntax
         return allUsers;
     }
     catch (e) {
         logger.error(`error in getAllUsers ${e}`)
-        return `error in getAllUsers() ${e}`
+        return CustomException(getStatusCode.SERVER_ERROR);
     }
 }
 
 const getOneUser = async (payload) => {
-    const {email} = payload;
+    const { email } = payload;
     try {
         if (!email) {
             logger.error("syntax error getOneUser()")
             return ("syntax error getOneUser()")
         }
-        const oneUser = await User.findOne({email});
+        const oneUser = await User.findOne({ email });
         if (!oneUser) {
             logger.error(`failed, check getOneUser(), user does not exist`)
             return (`failed, check getOneUser(), user does not exist`)
@@ -54,8 +57,10 @@ const registerUser = async (payload) => {
             return "failed, already existing user, check registerUser()"
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         // construct a new user in the exact model
-        const newUser = new User({ email: email, name: name, age: age, password: password })
+        const newUser = new User({ email: email, name: name, age: age, password: hashedPassword })
         // save() is the posting keyword
         await newUser.save();
 
@@ -117,7 +122,6 @@ const editUserEmail = async (payload) => {
         // check syntax
         if (!email || !replacementEmail) {
             logger.error(`check editUserEmail() email: ${email} or replacement: ${replacementEmail}`)
-            console.log("HERE")
             return "failed, check editUserEmail(), incorrect syntax"
         }
 
@@ -126,7 +130,6 @@ const editUserEmail = async (payload) => {
         logger.error(existingUser);
         if (!existingUser) {
             logger.error('failed, check editUserEmail(), user does not exist')
-            console.log("HEEE")
             return 'failed, editUserEmail(), user not found'
         }
 
@@ -139,7 +142,7 @@ const editUserEmail = async (payload) => {
         return `check editUserEmail() ${e}`;
     }
 }
-
+// https://cloud.mongodb.com/v2/656e978a1241d27b5da483aa#/overview
 const deleteUser = async (payload) => {
     const { email } = payload;
     try {
@@ -150,23 +153,86 @@ const deleteUser = async (payload) => {
         }
 
         // see if user exists
-        const existingUser = User.findOne({email})
+        const existingUser = User.findOne({ email })
         if (!existingUser) {
             logger.error('failed, check deleteUser(), no user found')
             return ('failed, check deleteUser(), no user found')
         }
 
         // now make database changes
-        await User.deleteOne({ email: email})
+        await User.deleteOne({ email: email })
 
         return "success"
     }
-    catch(e) {
+    catch (e) {
         logger.error(`error in deleteUser() ${e}`)
 
         return `error in deleteUser() ${e}`
     }
 }
 
+const loginUser = async (payload) => {
+    const { email, password } = payload;
+    try {
+        const requiredFields = ["email", "password"];
+        validatePayload(payload, requiredFields);
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser }
+        const foundUser = await findUserByEmail(email);
+
+        const passwordMatch = await bcrypt.compare(password, foundUser.password);
+
+        if (!passwordMatch) {
+            logger.error(`login(): Password mismatch for ${email}.`);
+            return CustomException(getStatusCode.UNAUTHORIZED);
+        }
+        return CustomException(getStatusCode.OK);
+    } catch (error) {
+        logger.error("login() has error" + error);
+        return CustomException(getStatusCode.SERVER_ERROR);
+    }
+};
+
+const saveToken = async (payload) => {
+    const { email, token } = payload;
+    try {
+        if (!email || !token) {
+            logger.error("Payload error on saveToken() in user repository");
+            return CustomException(getStatusCode.BAD_REQUEST);
+        }
+
+        const foundUser = await User.findOne({ email });
+        if (!foundUser) {
+            logger.error(`saveToken(): ${email} is not registered user.`);
+            return CustomException(getStatusCode.NOT_FOUND);
+        }
+
+        await User.findOneAndUpdate({ email }, { $set: { token } });
+
+        return CustomException(getStatusCode.CREATED)
+    } catch (error) {
+        logger.error("saveToken() has error" + error);
+        return CustomException(getStatusCode.SERVER_ERROR);
+    }
+};
+
+
+// internal
+const validatePayload = (payload, requiredFields) => {
+    for (const field of requiredFields) {
+      if (!payload[field]) {
+        logger.error(`Payload error: ${field} is missing.`);
+        return CustomException(getStatusCode.BAD_REQUEST);
+      }
+    }
+};
+
+const findUserByEmail = async (email) => {
+    const foundUser = await User.findOne({ email });
+    if (!foundUser) {
+      logger.error(`User not found for email: ${email}`);
+      return CustomException(getStatusCode.NOT_FOUND);
+    }
+    return foundUser;
+  };
+
+module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser, loginUser, saveToken }

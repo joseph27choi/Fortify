@@ -157,11 +157,19 @@ const deleteUserController = async (req, res) => {
     res.send({ msg });
 };
 
+const loginUserController = async (req, res) => {
+    const msg = await USERSERVICE.loginUser(req.body);
+    console.log(msg)
+    res.send({msg})
+}
+
+
 module.exports = {
     getAllUsersController,
     registerUserController,
     editTwoUserNamesController,
     editUserEmailController,
     deleteUserController,
-    getOneUserController
+    getOneUserController,
+    loginUserController
 };

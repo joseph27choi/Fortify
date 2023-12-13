@@ -4,12 +4,18 @@ const indexRouter = require("./src/router/index");
 const { logger } = require("./src/config/winston");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./src/config/swagger-output.json");
+const cors = require("cors");
 
 const app = express();
 DBConnect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use("/practice", indexRouter);
 app.use(

@@ -10,5 +10,7 @@ userRoute.post("/registerUser", USERCONTROLLER.registerUserController)
 userRoute.put("/editTwoUsers", USERCONTROLLER.editTwoUserNamesController)
 userRoute.patch("/editUserEmail", USERCONTROLLER.editUserEmailController)
 userRoute.delete("/deleteUser", USERCONTROLLER.deleteUserController)
+userRoute.post("/loginUser", USERCONTROLLER.loginUserController)
+
 
 module.exports = userRoute
