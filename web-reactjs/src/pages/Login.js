@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from "styled-components";
 import loginbg from '../../src/assets/loginbg.svg';
 
 const Login = () => {
+    const loginInputRef = useRef({username: '', password: ''});
+
+    const submitBtnHandler = () => {
+        console.log(loginInputRef);
+        // exception handling
+        if (loginInputRef.current.username == '' || loginInputRef.current.password == '') {
+            // don't bother server
+            console.log('invalid, empty')
+        }
+    }
+
     return (
         <>
             <BlackDiv>
                 <UpperDiv>
                     <ContentDiv>
                         <div className='title'>Login</div>
-                        <StyledInput placeholder='Username' />
-                        <StyledInput placeholder='Password' />
-                        <StyledBtn className='submit-btn'>Submit</StyledBtn>
+                        <StyledInput type='text' placeholder='Username' onChange={(e)=>loginInputRef.current.username = e.target.value}/>
+                        <StyledInput type='text' placeholder='Password' onChange={(e)=>loginInputRef.current.password = e.target.value}/>
+                        <StyledBtn className='submit-btn' onClick={submitBtnHandler}>Submit</StyledBtn>
                     </ContentDiv>
                 </UpperDiv>
                 <LowerDiv>
@@ -57,6 +68,13 @@ const StyledInput = styled.input`
     border-bottom: 2px solid black;
 
     background-color: transparent;
+
+    &:invalid {
+        /* background-color: ivory; */
+        border: none;
+        outline: 2px solid red;
+        border-radius: 5px;
+    }
 `
 
 const StyledBtn = styled.button`
