@@ -52,10 +52,7 @@
     },
     "/practice/user/getOneUser": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "Get One User from DB",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -65,10 +62,7 @@
     },
     "/practice/user/registerUser": {
       "post": {
-        "tags": [
-          "User"
-        ],
-        "description": "Add one User to DB",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -78,10 +72,7 @@
     },
     "/practice/user/editTwoUsers": {
       "put": {
-        "tags": [
-          "User"
-        ],
-        "description": "Get One User from DB",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -91,10 +82,7 @@
     },
     "/practice/user/editUserEmail": {
       "patch": {
-        "tags": [
-          "User"
-        ],
-        "description": "Get One User from DB",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -104,10 +92,7 @@
     },
     "/practice/user/deleteUser": {
       "delete": {
-        "tags": [
-          "User"
-        ],
-        "description": "Get One User from DB",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"

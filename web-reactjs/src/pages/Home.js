@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import CHARACTER from "../assets/recruitbg.svg";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import crewbg from "../../src/assets/crewbg.svg"
 
 // const getServerData = async () => {
 //   const data = await fetch("http://localhost:8080/api/user/getAllUsers").then(
@@ -26,132 +26,164 @@ const Home = () => {
 
   console.log(data);
 
+  const homeInputRef = useRef({ fortID: '', mainWeapon: '', rank: '', crewPref: '' });
+
+  const submitBtnHandler = () => {
+    // exception handling
+    if (homeInputRef.current.fortID == '' || homeInputRef.current.mainWeapon == '' || homeInputRef.current.rank == '' || homeInputRef.current.crewPref == '') {
+      alert('Please enter all fields')
+    } else {
+      alert('Submitted')
+    }
+}
+
   return (
-    <StyledPage>
-      <StyledColorBox>
-        <div className="bg-color-left" />
-        <StyledOverlayText>
-          <p>Fortnite Crew Recruitment</p>
-          <StyledInput placeholder="Fortnite ID" />
-          <StyledInput placeholder="Main Weapon" />
-          <StyledInput placeholder="Rank" />
-          <StyledInput placeholder="Crew Preference" />
-          <StyledButton>Submit</StyledButton>
-          <CharacterImage img={CHARACTER} />
-        </StyledOverlayText>
-      </StyledColorBox>
-    </StyledPage>
-  );
+    <>
+        <BlackDiv>
+            <UpperDiv>
+                <ContentDiv>
+                    <div className='title'>Profile</div>
+                    <InputWrapper>
+                        <StyledInput type='text' placeholder='Fortnite ID' onChange={(e) => homeInputRef.current.fortID = e.target.value} />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <StyledInput type="text" placeholder='Main weapon' onChange={(e) => homeInputRef.current.mainWeapon = e.target.value} />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <StyledInput type="text" placeholder='Confirm Password' onChange={(e) => homeInputRef.current.rank = e.target.value} />
+                    </InputWrapper>
+                    <InputWrapper>
+                            <StyledInput type='text' placeholder='Age' onChange={(e) => homeInputRef.current.crewPref = e.target.value}></StyledInput>
+                    </InputWrapper>
+                    <StyledBtn className='submit-btn' onClick={submitBtnHandler}>Submit</StyledBtn>
+                </ContentDiv>
+            </UpperDiv>
+            <LowerDiv>
+                <div className='background1'></div>
+                <img src={crewbg}></img>
+            </LowerDiv>
+        </BlackDiv>
+    </>
+)
 };
 
 export default Home;
 
-const StyledPage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const BlackDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
 
-  height: 100vh;
+    height: 100vh;
+    background-color: black;
+`
 
-  background-color: #000;
-`;
+const ContentDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
 
-const StyledColorBox = styled.div`
-  position: relative;
-
-  max-width: 500px;
-  width: 100%;
-  height: 500px;
-
-  background-color: #fff;
-
-  .bg-color-left {
-    width: 40%;
+    width: 70%;
     height: 100%;
-    background-color: #d1ebe9;
-  }
-`;
 
-const StyledOverlayText = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  font-size: 1.8rem;
-  text-align: center;
-`;
+    .title {
+        font-size: 26px;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+`
 
 const StyledInput = styled.input`
-  width: 300px;
+    font-size: 22px;
+    border: none;
+    border-bottom: 2px solid black;
 
-  font-size: 1.5rem;
+    background-color: transparent;
 
-  border: none;
-  border-bottom: 3px black solid;
+    &:invalid {
+        /* background-color: ivory; */
+        border: none;
+        outline: 2px solid red;
+        border-radius: 5px;
+    }
+`
 
-  padding: 0 0 0.5rem 1rem;
+const StyledBtn = styled.button`
+    box-shadow: 0 8px #999;
+    font-size: 25px;
+    border: none;
+    padding: 0.3em 0.25em;
 
-  background-color: transparent;
 
-  &::placeholder {
-    color: #a8aaad;
-  }
-
-  &:focus {
+    text-align: center;
+    cursor: pointer;
     outline: none;
-  }
-`;
+    border: none;
+    border-radius: 15px;
 
-const StyledButton = styled.button`
-  width: 300px;
-  height: 50px;
+    background-color: rgb(219, 216, 216);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 
-  background-color: white;
+    &:hover {
+        background-color: rgb(223, 223, 223);
+        color: rgb(22, 25, 22);
+    }
+    &:active {
+        transform: translateY(3px);
+        box-shadow: 0 5px #999;
+    }
+`
 
-  border: none;
-  border-radius: 50px;
+const UpperDiv = styled.div`
+    position: absolute;
+    z-index: 2;
+    background-color: transparent;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  font-weight: 700;
-  font-size: 1.2rem;
+    height: 30em;
+    width: 25em;
 
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
 
-  cursor: pointer;
+const LowerDiv = styled.div`
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(244, 244, 244, 1);
 
-  &:hover {
-    background-color: #e3e5e8;
-  }
-  &:active {
-    opacity: 50%;
-  }
-`;
+    display: flex;
+    flex-direction: row;
 
-const CharacterImage = styled.div`
-  width: 160px;
-  height: 240px;
+    height: 30em;
+    width: 25em;
 
-  position: absolute;
-  bottom: 0;
-  right: 0;
+    .background1{
+        width: 35%;
+        height: 100%;
+        background-color: #D1EBE9;
+    }
+    &>img{
+        position: absolute;
+        min-height: 270px;
+        max-height: 500px;
+        height: 40%;
+        bottom: 0px;
+        right: 0px;
+    }
+`
 
-  background-image: url(${(props) => props.img});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 
-  z-index: -1;
-`;
+const InputWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
+
+const StyledIcon = styled.img`
+    width: 10px;
+    height: 10px;
+`

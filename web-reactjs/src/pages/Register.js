@@ -1,29 +1,50 @@
 import React, { useRef, useState } from 'react'
 import styled from "styled-components";
-import loginbg from '../../src/assets/loginbg.svg';
 import imgShowEye from '../../src/assets/showeye.svg'
 import imgHideEye from '../../src/assets/hideeye.svg'
+import registerbg from '../../src/assets/registerbg.svg'
+import axios from 'axios';
 
-const Login = () => {
-    const loginInputRef = useRef({ username: '', password: '' });
+const Register = () => {
+    const registerInputRef = useRef({ email: '', username: '', password: '', password2: '', age: '' });
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
 
     const handleClickShowButton = (field) => {
         if (field == "pw") {
             setShowPassword(!showPassword)
+        } else if (field == "pw2") {
+            setShowPassword2(!showPassword2)
         }
     }
 
-    const submitBtnHandler = () => {
-        console.log(loginInputRef);
+    const submitBtnHandler = async () => {
+        console.log(registerInputRef);
         // exception handling
-        if (loginInputRef.current.username == '' || loginInputRef.current.password == '') {
+        if (registerInputRef.current.email === '' || registerInputRef.current.username === '' || registerInputRef.current.password === '' || registerInputRef.current.password2 === '' || registerInputRef.current.age === '') {
             // don't bother server
             alert("Please enter all fields.")
+            return;
         }
         else {
-            alert("submitted")
+            if (registerInputRef.current.password !== registerInputRef.current.password2) {
+                alert('Passwords do not match')
+            } else {
+                await axios.post('http://localhost:8080/practice/user/registerUser', {
+                    email: registerInputRef.current.email,
+                    name: registerInputRef.current.username,
+                    age: registerInputRef.current.age,
+                    password: registerInputRef.current.password
+                }).then({ function(response) {
+                    console.log(response)
+                }
+                }).catch({ function(error){
+                    console.log(error)
+                }
+                });
+                alert("submitted")
+            }
         }
     }
 
@@ -32,12 +53,15 @@ const Login = () => {
             <BlackDiv>
                 <UpperDiv>
                     <ContentDiv>
-                        <div className='title'>Login</div>
+                        <div className='title'>Register</div>
                         <InputWrapper>
-                            <StyledInput type='text' placeholder='Username' onChange={(e) => loginInputRef.current.username = e.target.value} />
+                            <StyledInput type='text' placeholder='Email' onChange={(e) => registerInputRef.current.email = e.target.value} />
                         </InputWrapper>
                         <InputWrapper>
-                            <StyledInput type={showPassword ? "text" : "password"} placeholder='Password' onChange={(e) => loginInputRef.current.password = e.target.value} />
+                            <StyledInput type='text' placeholder='Username' onChange={(e) => registerInputRef.current.username = e.target.value} />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <StyledInput type={showPassword ? "text" : "password"} placeholder='Password' onChange={(e) => registerInputRef.current.password = e.target.value} />
                             <button type='button' onClick={() => handleClickShowButton("pw")}>
                                 {showPassword ? (
                                     <StyledIcon src={imgShowEye} alt='show eye'></StyledIcon>
@@ -46,19 +70,32 @@ const Login = () => {
                                 }
                             </button>
                         </InputWrapper>
+                        <InputWrapper>
+                            <StyledInput type={showPassword2 ? "text" : "password"} placeholder='Confirm Password' onChange={(e) => registerInputRef.current.password2 = e.target.value} />
+                            <button type='button' onClick={() => handleClickShowButton("pw2")}>
+                                {showPassword2 ? (
+                                    <StyledIcon src={imgShowEye} alt='show eye'></StyledIcon>
+                                ) : (
+                                    <StyledIcon src={imgHideEye} alt='hide eye'></StyledIcon>)
+                                }
+                            </button>
+                        </InputWrapper>
+                        <InputWrapper>
+                            <StyledInput type='text' placeholder='Age' onChange={(e) => registerInputRef.current.age = e.target.value}></StyledInput>
+                        </InputWrapper>
                         <StyledBtn className='submit-btn' onClick={submitBtnHandler}>Submit</StyledBtn>
                     </ContentDiv>
                 </UpperDiv>
                 <LowerDiv>
                     <div className='background1'></div>
-                    <img src={loginbg}></img>
+                    <img src={registerbg}></img>
                 </LowerDiv>
             </BlackDiv>
         </>
     )
 }
 
-export default Login
+export default Register
 
 const BlackDiv = styled.div`
     display: flex;
@@ -102,19 +139,20 @@ const StyledInput = styled.input`
 `
 
 const StyledBtn = styled.button`
+    box-shadow: 0 8px #999;
+    font-size: 25px;
+    border: none;
     padding: 0.3em 0.25em;
 
-    cursor: pointer;
 
     text-align: center;
-    font-size: 25px;
+    cursor: pointer;
     outline: none;
-
     border: none;
     border-radius: 15px;
-    box-shadow: 0 8px #999;
 
     background-color: rgb(219, 216, 216);
+
 
     &:hover {
         background-color: rgb(223, 223, 223);
@@ -137,6 +175,7 @@ const UpperDiv = styled.div`
 
     height: 30em;
     width: 25em;
+
 `
 
 const LowerDiv = styled.div`
@@ -153,9 +192,10 @@ const LowerDiv = styled.div`
     .background1{
         width: 35%;
         height: 100%;
-        background-color: #db8e8e;
+        background-color: #D2EBD1;
+        ;
     }
-    &>img{
+    &:img{
         position: absolute;
         min-height: 270px;
         max-height: 500px;
