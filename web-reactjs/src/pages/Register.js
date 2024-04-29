@@ -88,7 +88,7 @@ const Register = () => {
                 </UpperDiv>
                 <LowerDiv>
                     <div className='background1'></div>
-                    <img src={registerbg}></img>
+                    <img src={registerbg} className='svg-image'></img>
                 </LowerDiv>
             </BlackDiv>
         </>
@@ -195,9 +195,19 @@ const LowerDiv = styled.div`
         background-color: #D2EBD1;
         ;
     }
-    &:img{
+
+    /* &:img{
         position: absolute;
-        min-height: 270px;
+        min-height: 100px;
+        max-height: 200px;
+        height: 40%;
+        bottom: 0px;
+        right: 0px;
+    } */
+
+    img.svg-image {
+        position: absolute;
+        min-height: 400px;
         max-height: 500px;
         height: 40%;
         bottom: 0px;
