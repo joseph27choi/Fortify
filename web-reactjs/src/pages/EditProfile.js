@@ -22,7 +22,7 @@ const fetchData = async () => {
     return response.data;
 };
 
-const Home = () => {
+const EditProfile = () => {
     const { data } = useQuery({
         queryKey: ["uniqueQueryKey"],
         queryFn: fetchData,
@@ -58,7 +58,7 @@ const Home = () => {
                             </DescriptionDiv>
                         </OptionsDiv>
                         <ContentDiv>
-                            <div className='title'>Home</div>
+                            <div className='title'>Profile Settings</div>
                             <InputWrapper>
                                 <StyledInput type='text' placeholder='Fortnite ID' onChange={(e) => homeInputRef.current.fortID = e.target.value} />
                             </InputWrapper>
@@ -103,7 +103,7 @@ const Home = () => {
     )
 };
 
-export default Home;
+export default EditProfile;
 
 const BlackDiv = styled.div`
     display: flex;

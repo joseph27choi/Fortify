@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.13.4",
     "@tanstack/react-query-devtools": "^5.13.4",
     "@testing-library/jest-dom": "^5.17.0",
@@ -38,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.23.0"
   }
 }
