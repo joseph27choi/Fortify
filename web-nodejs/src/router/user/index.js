@@ -11,6 +11,7 @@ userRoute.put("/editTwoUsers", USERCONTROLLER.editTwoUserNamesController)
 userRoute.patch("/editUserEmail", USERCONTROLLER.editUserEmailController)
 userRoute.delete("/deleteUser", USERCONTROLLER.deleteUserController)
 userRoute.post("/loginUser", USERCONTROLLER.loginUserController)
-
+userRoute.patch("/checkFortID", USERCONTROLLER.checkFortIDController)
+userRoute.patch("/editRankAndPref", USERCONTROLLER.editRankAndPrefController)
 
 module.exports = userRoute

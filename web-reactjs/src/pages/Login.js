@@ -4,6 +4,7 @@ import logo_f from '../../src/assets/logo-f.png'
 import checkmark from '../../src/assets/icons8-checkmark-64 (1).png'
 import loginbg from '../../src/assets/loginbg.svg'
 import { Link, useNavigate } from 'react-router-dom';
+import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv } from './styles';
 import axios from 'axios';
 
 const Login = () => {
@@ -11,8 +12,15 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const [submitted, setSubmitted] = useState(false)
+
     const submitBtnHandler = async () => {
-        console.log(loginInputRef);
+
+        if (submitted) {
+            alert('already submitted')
+            return;
+        }
+
         // exception handling
         if (loginInputRef.current.email === '' || loginInputRef.current.password === '') {
             // don't bother server
@@ -26,13 +34,17 @@ const Login = () => {
             })
             .then(response => {
                 if (response?.data.msg.loginMsg.msg && response?.data.msg.loginMsg.msg === 'OK. Request was successful.') {
+                    setSubmitted(true);
+                    alert('going home')
                     navigate('/home');
+                } else {
+                    console.log(response?.data.msg.loginMsg.msg)
+                    alert(`${loginInputRef.current.email} does not exist.`)
                 }
             })
             .catch(error => {
                 console.log(error)
             });
-
         }
     }
 
@@ -69,13 +81,13 @@ const Login = () => {
                             <InputWrapper>
                                 <LoginDiv>
                                     Don't have an account yet?{" "}
-                                    <Link to="/">Create one</Link>
+                                    <Link style={{color: "#4287f5"}} to="/">Create one</Link>
                                 </LoginDiv>
                             </InputWrapper>
                         </ContentDiv>
                     </UpperDiv>
-                    <LowerDiv>
-                        <div className='background1'></div>
+                    <LowerDiv >
+                        <Background1 className='background1' bgColor='#574829' />
                         <img className='bgimg' src={loginbg}></img>
                     </LowerDiv>
                 </CentralDiv>
@@ -85,154 +97,3 @@ const Login = () => {
 }
 
 export default Login
-
-const BlackDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    height: 100vh;
-    background-color: black;
-`
-
-const CentralDiv = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 50rem;
-    height: 40rem;
-    background-color: #2d2d2d;
-`
-
-const OptionsDiv = styled.div`
-    /* background-color: rosybrown; */
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    margin-top: 18em;
-    .logo {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }
-`
-
-const DescriptionDiv = styled.div`
-    color: white;
-    width: 80%;
-    .title {
-        font-size: 35px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 1.8em;
-    }
-    .bullet-points {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 1rem;
-    }
-    
-    .check {
-        height: 35px;
-    }
-`
-
-const ContentDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-content: center;
-    width: 50%;
-    height: 100%;
-    .title {
-        font-size: 26px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 1em;
-    }
-`
-
-const StyledInput = styled.input`
-    font-size: 22px;
-    border: none;
-    border-bottom: 2px solid black;
-    background-color: transparent;
-    &:invalid {
-        background-color: ivory;
-        border: none;
-        outline: 2px solid red;
-        border-radius: 5px;
-    }
-`
-
-const StyledBtn = styled.button`
-    box-shadow: 0 8px #999;
-    font-size: 25px;
-    border: none;
-    padding: 0.3em 0.25em;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    border-radius: 15px;
-    width: 10em;
-    background-color: rgb(219, 216, 216);
-    &:hover {
-        background-color: rgb(223, 223, 223);
-        color: rgb(22, 25, 22);
-    }
-    &:active {
-        transform: translateY(3px);
-        box-shadow: 0 5px #999;
-    }
-`
-
-const UpperDiv = styled.div`
-    position: absolute;
-    z-index: 2;
-    background-color: transparent;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-`
-
-const LowerDiv = styled.div`
-    position: absolute;
-    z-index: 1;
-    background-color: rgba(244, 244, 244, 1);
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    .background1{
-        width: 50%;
-        height: 100%;
-        background-color: #876464;
-    }
-    .bgimg{
-        position: absolute;
-        min-height: 125px;
-        max-height: 300px;
-        height: 40%;
-        bottom: 0px;
-        left: 12em;
-    }
-`
-
-
-const InputWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
-
-const LoginDiv = styled.div`
-    
-`

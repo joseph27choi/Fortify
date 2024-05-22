@@ -48,7 +48,7 @@ const loginUser = async (payload) => {
 
         console.log(accessToken)
 
-        await USERREPO.saveToken({email: payload.email, token: accessToken})
+        await USERREPO.saveToken({ email: payload.email, token: accessToken })
 
         return { loginMsg: msg, accessToken };
     } catch (error) {
@@ -56,4 +56,24 @@ const loginUser = async (payload) => {
     }
 };
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser, loginUser }
+const checkFortID = async (payload) => {
+    const msg = await USERREPO.checkFortID(payload);
+    return msg;
+}
+
+const editRankAndPref = async (payload) => {
+    const msg = await USERREPO.editRankAndPref(payload)
+    return msg;
+}
+
+module.exports = {
+    getAllUsers,
+    registerUser,
+    editTwoUserNames,
+    editUserEmail,
+    deleteUser,
+    getOneUser,
+    loginUser,
+    checkFortID,
+    editRankAndPref,
+}

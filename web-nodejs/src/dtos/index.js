@@ -25,6 +25,22 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "",
   },
+  fortID: {
+    type: String,
+    default: ""
+  },
+  mainWeapon: {
+    type: String,
+    default: ""
+  },
+  rank: {
+    type: String,
+    default: ""
+  },
+  crewPref: {
+    type: String,
+    default: ""
+  }
 });
 
 const User = mongoose.model("user", userSchema);

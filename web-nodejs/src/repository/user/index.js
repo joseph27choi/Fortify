@@ -142,6 +142,7 @@ const editUserEmail = async (payload) => {
         return `check editUserEmail() ${e}`;
     }
 }
+
 // https://cloud.mongodb.com/v2/656e978a1241d27b5da483aa#/overview
 const deleteUser = async (payload) => {
     const { email } = payload;
@@ -192,6 +193,49 @@ const loginUser = async (payload) => {
     }
 };
 
+const checkFortID = async (payload) => {
+    const { email, fortID } = payload;
+    try {
+        if (!email || !fortID) {
+            logger.error("checkFortID() invalid payload")
+            return "failed, check checkFortID()"
+        }
+
+        // check if duplicates exist
+        const existingUser = await User.findOne({ fortID })
+
+        if (existingUser) {
+            logger.error(`registerUser() ${fortID} already exists`)
+            return "failed, already existing user, check checkFortID()"
+        }
+
+        await User.updateOne({ email: email }, { $set: { fortID: fortID } })
+        return 'success'
+    }
+    catch (e) {
+        logger.error(`error in checkFortID() ${e}`)
+        return ("checkFortID() has error ", e)
+    }
+}
+
+const editRankAndPref = async (payload) => {
+    const {email, mainWeapon, rank, crewPref} = payload;
+
+    try {
+        if (!email || !mainWeapon || !rank || !crewPref) {
+            logger.error("editRankAndPref() invalid payload")
+            return "failed, check editRankAndPref()"
+        }
+
+        await User.updateOne({ email: email }, { $set: { mainWeapon, rank, crewPref } })
+        return 'success'
+    }
+    catch (e) {
+        logger.error(`error in editRankAndPref() ${e}`)
+        return ("editRankAndPref() has error ", e)
+    }
+}
+
 const saveToken = async (payload) => {
     const { email, token } = payload;
     try {
@@ -219,20 +263,31 @@ const saveToken = async (payload) => {
 // internal
 const validatePayload = (payload, requiredFields) => {
     for (const field of requiredFields) {
-      if (!payload[field]) {
-        logger.error(`Payload error: ${field} is missing.`);
-        return CustomException(getStatusCode.BAD_REQUEST);
-      }
+        if (!payload[field]) {
+            logger.error(`Payload error: ${field} is missing.`);
+            return CustomException(getStatusCode.BAD_REQUEST);
+        }
     }
 };
 
 const findUserByEmail = async (email) => {
     const foundUser = await User.findOne({ email });
     if (!foundUser) {
-      logger.error(`User not found for email: ${email}`);
-      return CustomException(getStatusCode.NOT_FOUND);
+        logger.error(`User not found for email: ${email}`);
+        return CustomException(getStatusCode.NOT_FOUND);
     }
     return foundUser;
-  };
+};
 
-module.exports = { getAllUsers, registerUser, editTwoUserNames, editUserEmail, deleteUser, getOneUser, loginUser, saveToken }
+module.exports = {
+    getAllUsers,
+    registerUser,
+    editTwoUserNames,
+    editUserEmail,
+    deleteUser,
+    getOneUser,
+    loginUser,
+    checkFortID,
+    editRankAndPref,
+    saveToken
+}

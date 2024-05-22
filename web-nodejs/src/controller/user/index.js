@@ -42,6 +42,17 @@ const loginUserController = async (req, res) => {
     res.send({msg})
 }
 
+const checkFortIDController = async (req, res) => {
+    const msg = await USERSERVICE.checkFortID(req.body);
+    console.log(msg);
+    res.send({msg})
+}
+
+const editRankAndPrefController = async (req, res) => {
+    const msg = await USERSERVICE.editRankAndPref(req.body)
+    console.log(msg);
+    res.send({msg})
+}
 
 module.exports = {
     getAllUsersController,
@@ -50,5 +61,7 @@ module.exports = {
     editUserEmailController,
     deleteUserController,
     getOneUserController,
-    loginUserController
+    loginUserController,
+    checkFortIDController,
+    editRankAndPrefController,
 };

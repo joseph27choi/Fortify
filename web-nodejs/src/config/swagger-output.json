@@ -109,6 +109,26 @@
           }
         }
       }
+    },
+    "/practice/user/checkFortID": {
+      "patch": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/practice/user/editRankAndPref": {
+      "patch": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
