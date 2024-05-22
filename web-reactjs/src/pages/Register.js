@@ -6,7 +6,7 @@ import registerbg from '../../src/assets/registerbg.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from 'axios';
-import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, UpperDiv } from './styles';
+import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv, BgImg } from './styles';
 
 
 
@@ -117,7 +117,7 @@ const Register = () => {
                     </UpperDiv>
                     <LowerDiv bgColor=''>
                         <Background1 className='background1'/>
-                        <img className='bgimg' src={registerbg}></img>
+                        <BgImg className='bgimg' src={registerbg} left='15em'/>
                     </LowerDiv>
                 </CentralDiv>
             </BlackDiv>

@@ -5,7 +5,7 @@ import logo_f from '../../src/assets/logo-f.png'
 import checkmark from '../../src/assets/icons8-checkmark-64 (1).png'
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
-import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv } from './styles';
+import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv, BgImg } from './styles';
 import crewbg from "../../src/assets/crewbg.svg"
 
 
@@ -115,7 +115,7 @@ const EditProfile = () => {
                     </UpperDiv>
                     <LowerDiv>
                         <Background1 className='background1' bgColor='#4d2c52'/>
-                        <img className='bgimg' src={crewbg}></img>
+                        <BgImg className='bgimg' src={crewbg} />
                     </LowerDiv>
                 </CentralDiv>
             </BlackDiv>

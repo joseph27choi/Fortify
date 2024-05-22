@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react'
-import styled from "styled-components";
 import logo_f from '../../src/assets/logo-f.png'
 import checkmark from '../../src/assets/icons8-checkmark-64 (1).png'
 import loginbg from '../../src/assets/loginbg.svg'
 import { Link, useNavigate } from 'react-router-dom';
-import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv } from './styles';
+import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv, BgImg } from './styles';
 import axios from 'axios';
 
 const Login = () => {
@@ -88,7 +87,7 @@ const Login = () => {
                     </UpperDiv>
                     <LowerDiv >
                         <Background1 className='background1' bgColor='#574829' />
-                        <img className='bgimg' src={loginbg}></img>
+                        <BgImg className='bgimg' src={loginbg} />
                     </LowerDiv>
                 </CentralDiv>
             </BlackDiv>

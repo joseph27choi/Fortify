@@ -150,15 +150,6 @@ export const LowerDiv = styled.div`
     height: 100%;
     width: 100%;
 
-
-    .bgimg {
-        position: absolute;
-        min-height: 125px;
-        max-height: 300px;
-        height: 40%;
-        bottom: 0px;
-        left: 15em;
-    }
 `;
 
 export const Background1 = styled.div`
@@ -195,3 +186,12 @@ export const StyledSelect = styled.select`
         border-radius: 5px;
     }
 `;
+
+export const BgImg = styled.img`
+    position: absolute;
+    min-height: 125px;
+    max-height: 300px;
+    height: 40%;
+    bottom: 0px;
+    left: ${props => props.left || '13em'};
+`
