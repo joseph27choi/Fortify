@@ -41,7 +41,7 @@ const Dashboard = () => {
     <>
         <StyledDiv>
             <TitleDiv>
-                <div>Good Evening, {capitalize(localStorage.getItem('currentUserEmail'))}</div>
+                <div>Good Evening</div>
                 <div>Choose your squad</div>
             </TitleDiv>
             <Carousel></Carousel>
