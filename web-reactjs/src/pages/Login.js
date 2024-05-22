@@ -34,6 +34,7 @@ const Login = () => {
             .then(response => {
                 if (response?.data.msg.loginMsg.msg && response?.data.msg.loginMsg.msg === 'OK. Request was successful.') {
                     setSubmitted(true);
+                    localStorage.setItem('currentUserEmail', loginInputRef.current.email);
                     alert('going home')
                     navigate('/home');
                 } else {
