@@ -61,51 +61,29 @@ export const SideNav = styled.div`
     }
 `
 
-export const DescriptionDiv = styled.div`
+export const BulletPoint = styled.div`
+    width: 100%;
+    background-color: black;
     color: white;
 
-    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
 
-    width: 100%;
+    padding: 0.5rem;
 
-    .bullet-points {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-size: 15px;
-        font-weight: bold;
-
-        padding: 0.5rem;
-    }
-    .check {
-        margin: 0.5rem;
-        height: 25px;
+    &:hover {
+        cursor: pointer;
     }
 `
 
-
-export const AccountDiv = styled.div`
-    width: 100%;
-    color: white;
-
-    background-color: black;
-
-    width: 100%;
-
-    .bullet-points {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-size: 15px;
-        font-weight: bold;
-
-        padding: 0.5rem;
-    }
-    .check {
-        margin: 0.5rem;
-        height: 25px;
-    }
+export const Check = styled.img`
+    margin: 0.5rem;
+    height: 25px;
 `
+
 
 export const ContentDiv = styled.div`
     display: flex;

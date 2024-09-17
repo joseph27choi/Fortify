@@ -46,11 +46,14 @@ const loginUser = async (payload) => {
 
         const accessToken = jwt.sign(jwtPayload, jwtSecret, { expiresIn: "1h" });
 
-        console.log(accessToken)
-
         await USERREPO.saveToken({ email: payload.email, token: accessToken })
 
-        return { loginMsg: msg, accessToken };
+        if (msg.code === 200) {
+            return { loginMsg: msg, accessToken };
+        } else {
+            return { loginMsg: msg}
+        }
+
     } catch (error) {
         console.log(error)
     }

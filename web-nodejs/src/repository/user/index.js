@@ -26,7 +26,7 @@ const getOneUser = async (payload) => {
     try {
         if (!email) {
             logger.error("syntax error getOneUser()")
-            return ("syntax error getOneUser()")
+            return ("syntax error getOneUser()", payload)
         }
         const oneUser = await User.findOne({ email });
         if (!oneUser) {

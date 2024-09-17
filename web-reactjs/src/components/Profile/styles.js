@@ -155,7 +155,7 @@ export const LowerDiv = styled.div`
 export const Background1 = styled.div`
     width: 50%;
     height: 100%;
-    background-color: ${({ bgColor }) => bgColor || '#2e4266'};
+    background-color: #4d2c52;
 `
 
 
@@ -193,5 +193,5 @@ export const BgImg = styled.img`
     max-height: 300px;
     height: 40%;
     bottom: 0px;
-    left: ${props => props.left || '13em'};
+    left: 13em;
 `

@@ -51,7 +51,7 @@
       }
     },
     "/practice/user/getOneUser": {
-      "get": {
+      "post": {
         "description": "",
         "responses": {
           "200": {

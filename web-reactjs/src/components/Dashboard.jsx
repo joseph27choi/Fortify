@@ -3,49 +3,21 @@ import styled from 'styled-components'
 import Carousel from './Carousel/Carousel';
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-function capitalize(s)
-{
-    return s[0].toUpperCase() + s.slice(1);
-}
+import { useGetOneUser } from '../api/hooks/mutators';
 
 
-const fetchData = async (currentUserEmail) => {
-  const response = await axios.get(
-      `http://localhost:8080/practice/user/getOneUser`
-  );
-  return response.data;
-};
 
 const Dashboard = () => {
 
-
-  const [currentUserInfo, setCurrentUserInfo] = useState('');
-
-  const { data } = useQuery({
-    queryKey: ["uniqueQueryKey"],
-    queryFn: fetchData,
-  });
-
-  useEffect(() => {
-    if (data) {
-      setCurrentUserInfo(data);
-    } else {
-      setCurrentUserInfo()
-    }
-  })
-
-
-
   return (
     <>
-        <StyledDiv>
-            <TitleDiv>
-                <div>Good Evening</div>
-                <div>Choose your squad</div>
-            </TitleDiv>
-            <Carousel></Carousel>
-        </StyledDiv>
+      <StyledDiv>
+        <TitleDiv>
+          <div>Good Evening</div>
+          <div>Choose your squad</div>
+        </TitleDiv>
+        <Carousel></Carousel>
+      </StyledDiv>
     </>
   )
 }
