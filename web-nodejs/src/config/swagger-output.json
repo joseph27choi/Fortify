@@ -52,7 +52,10 @@
     },
     "/practice/user/getOneUser": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Get One Specific User from DB",
         "responses": {
           "200": {
             "description": "OK"
@@ -62,20 +65,132 @@
     },
     "/practice/user/registerUser": {
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Add one User to DB",
+        "parameters": [
+          {
+            "name": "",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "kevin@email.com"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Kevin"
+                },
+                "age": {
+                  "type": "number",
+                  "example": 32
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "201": {
+            "description": "If Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success!."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "If one of payload is empty",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "There is no payload on addUser() in user repository. "
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/practice/user/editTwoUsers": {
       "put": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Edit Two Users at the same time",
+        "parameters": [
+          {
+            "name": "",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "kevin@email.com"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Kevin"
+                },
+                "age": {
+                  "type": "number",
+                  "example": 32
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "201": {
+            "description": "If Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success!."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "If one of payload is empty",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "There is no payload on addUser() in user repository. "
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

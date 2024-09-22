@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Background1, BlackDiv, CentralDiv, ContentDiv, DescriptionDiv, InputWrapper, LoginDiv, LowerDiv, OptionsDiv, StyledBtn, StyledInput, StyledSelect, UpperDiv, BgImg } from './styles';
-import logo_f from '../../../src/assets/logo-f.png'
-import checkmark from '../../../src/assets/icons8-checkmark-64 (1).png'
+import logo_f from '../../../src/assets/logos/logo-f.png'
+import checkmark from '../../../src/assets/auth-images/icons8-checkmark-64 (1).png'
 import crewbg from "../../../src/assets/crewbg.svg"
 
 import { Link, useNavigate } from 'react-router-dom';

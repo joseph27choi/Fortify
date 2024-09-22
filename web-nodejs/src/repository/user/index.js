@@ -8,16 +8,14 @@ const getAllUsers = async () => {
     try {
         const allUsers = await User.find({});
         if (!allUsers) {
-            logger.error(`failed, check getAllUsers(), cannot reach`)
-            // throw new CustomException(getStatusCode.NOT_FOUND);
-            return CustomException(getStatusCode.NOT_FOUND);
+            logger.error(`getAllUsers(): no users exist in db`)
+            return [];
         }
-        // what does the {} do? probably node syntax
         return allUsers;
     }
     catch (e) {
         logger.error(`error in getAllUsers ${e}`)
-        return CustomException(getStatusCode.SERVER_ERROR);
+        throw new CustomException(getStatusCode.SERVER_ERROR);
     }
 }
 
@@ -48,20 +46,18 @@ const registerUser = async (payload) => {
     try {
         if (!email || !name || !age || !password) {
             logger.error("registerUser() invalid payload")
-            return "failed, check registerUser()"
+            return CustomException(getStatusCode.BAD_REQUEST)
         }
-        // check if duplicates exist
+
         const existingUser = await User.findOne({ email })
         if (existingUser) {
             logger.error(`registerUser() ${email} already exists`)
-            return "failed, already existing user, check registerUser()"
+            return CustomException(getStatusCode.DUPLICATE_ID)
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // construct a new user in the exact model
         const newUser = new User({ email: email, name: name, age: age, password: hashedPassword })
-        // save() is the posting keyword
         await newUser.save();
 
         return "success"

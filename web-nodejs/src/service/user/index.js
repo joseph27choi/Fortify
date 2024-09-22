@@ -12,7 +12,6 @@ const getOneUser = async (payload) => {
     return repoMsg;
 }
 
-// only job is to connect
 const registerUser = async (payload) => {
     const repoMsg = await USERREPO.registerUser(payload);
     return repoMsg;
@@ -51,7 +50,7 @@ const loginUser = async (payload) => {
         if (msg.code === 200) {
             return { loginMsg: msg, accessToken };
         } else {
-            return { loginMsg: msg}
+            return { loginMsg: msg }
         }
 
     } catch (error) {
